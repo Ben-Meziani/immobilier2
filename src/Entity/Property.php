@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use DateTime;
+
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  */
@@ -260,4 +262,5 @@ class Property
 
         return $this;
     }
+  
 }
