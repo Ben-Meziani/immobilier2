@@ -12,6 +12,7 @@ use DateTime;
  */
 class Property
 {
+
     const HEAT = [
         0 => 'Electrique',
         1=> 'Gaz'
@@ -87,6 +88,11 @@ class Property
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
