@@ -4,11 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -33,26 +32,23 @@ class RegisterController extends AbstractController
             ]
         ])
         ->getForm();
-
         $form->handleRequest($request);
-        if($form->isSubmitted())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            //dd($data);
             $user = new User();
             $user->setUsername($data['username']);
             $user->setPassword(
                 $passEncoder->encodePassword($user, $data['password'])
             );
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            return $this->redirectToRoute('home');
+        
+            return $this->redirect($this->generateUrl('app_login'));
         }
-
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+        'form' => $form->createView()
         ]);
-}
+    }
 }
