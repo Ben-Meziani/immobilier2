@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom d'utilisateur</th>
+                <th>Roles</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in user %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {% if role == "Role_USER" %}
+                        Utilisateur
+                        {% elseif role == "ROLE_EDITOR" %}
+                       Editeur
+                        {% elseif role == "Role_ADMIN" %}
+                        Administrateur
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ user.id }}</td>
+                <td><a href="{{ path('edit_user', {'id': user.id}) }}" class="btn btn-warning">Modifier</a></td>
+            </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Il n'y a pas d'utilisateur inscrit</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
