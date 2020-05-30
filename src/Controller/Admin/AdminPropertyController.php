@@ -144,4 +144,19 @@ class AdminPropertyController extends AbstractController
             'userForm' => $form->createView()
         ]);
     }
+
+     /**
+     *@Route("/admin/user/{id}", name="admin.user.delete", methods="DELETE")
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteUser(User $user, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->get('_token'))) {
+            $this->em->remove($user);
+            $this->em->flush();
+            $this->addFlash('success', 'Bien supprimé avec succès');
+        }
+        return $this->redirectToRoute('admin_user');
+    }
 }

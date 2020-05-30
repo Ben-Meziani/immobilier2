@@ -21,8 +21,15 @@
                   <a class="nav-link" {% if  current_menu is defined and current_menu == 'properties' %}active{% endif %} href="{{ path('property.index') }}">Acheter</a>
                 </li>
               </ul>
+              {% if is_granted('ROLE_ADMIN') %}
+                <a class="navbar-brand" href="{{ path('admin_user') }}">Admin</a>
+              {% endif %}
+              {% if is_granted('ROLE_USER') %}
+              <a class="navbar-brand" href="">Profil</a>
+            {% endif %}
               
             </div>
+        
           </nav>
         {% block body %}{% endblock %}
         
