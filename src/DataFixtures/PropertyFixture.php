@@ -11,7 +11,8 @@ class PropertyFixture extends Fixture
 {
     public function load(ObjectManager $manager)
     { 
-        $faker = Faker\Factory::create("fr_FR");
+        // fixtures des différentes données pour mes biens avec faker
+        $faker = Factory::create("fr_FR");
         for ($i = 0; $i < 100; $i++) {
             $property =  new Property();
             $property 
