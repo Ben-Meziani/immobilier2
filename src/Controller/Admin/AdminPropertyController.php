@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -79,7 +80,7 @@ class AdminPropertyController extends AbstractController
      */
     public function edit(Property $property, Request $request)
     {
-
+       
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
