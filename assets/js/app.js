@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 import Places from 'places.js'
 import Map from './modules/map'
 import 'slick-carousel'
@@ -29,6 +31,7 @@ if (searchAddress !== null) {
     document.querySelector('#lng').value = e.suggestion.latlng.lng
   })
 }
+
 
 let $ = require('jquery')
 require('../css/app.css');
@@ -70,7 +73,19 @@ document.querySelectorAll('[data-delete]').forEach(a => {
 })
 
 
+
+
+
+
+
+
+
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // var $ = require('jquery');
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+console.log(document.querySelector('#property_city').value = e.suggestion.city
+document.querySelector('#property_postal_code').value = e.suggestion.postcode
+document.querySelector('#property_lat').value = e.suggestion.latlng.lat
+document.querySelector('#property_lng').value = e.suggestion.latlng.lng);
+});
