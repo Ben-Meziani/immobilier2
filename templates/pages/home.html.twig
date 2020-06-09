@@ -1,27 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Mon Agence Lorem Ipsum' %}
+{% block title 'Agence lorem ipsum' %}
 
 {% block body %}
-<div class="jumbotron text-center">
-<h1>Agence lorem ipsum</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, eius. Illo doloremque reiciendis placeat obcaecati debitis eum tempora quibusdam similique dolores dolorum assumenda tenetur, consequatur repellat fuga excepturi nesciunt modi?</p>
-</div>
-<div class="container">
-    <h2>Les derniers biens </h2>
+  <div class="jumbotron text-center">
+    <h1 style="color: white;">Agence lorem ipsum</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aut cumque dolore error expedita itaque iure iusto magni, molestiae numquam omnis provident quae repellat sint soluta tempora unde voluptate voluptatibus.</p>
+  </div>
+
+  <div class="container">
+    <h2>Les derniers biens</h2>
     <div class="row flex">
-        {% for property in properties %}
-        <div class="row">
-
-            {% for property in properties %}
-            <div class="col-md-4">
-                {% include "property/_property.html.twig" %}
-            </div>
-            {% endfor %}
+      {% for property in properties %}
+        <div class="col-3">
+          {% include 'property/_property.html.twig' %}
         </div>
-        {% endfor %}
-
+      {% endfor %}
     </div>
-</div>
-
+  </div>
 {% endblock %}

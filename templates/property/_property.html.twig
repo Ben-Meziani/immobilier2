@@ -1,8 +1,8 @@
-<div class="card mb-4">
+<div class="card mb-4" style="border-radius: 10%;">
   {% if property.picture %}
-    <img src="{{ vich_uploader_asset(property.picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto;">
+    <img src="{{ vich_uploader_asset(property.picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto; border-radius: 10%;">
     {% else %}
-      <img src="{{ '/images/empty.jpeg'}}" alt="card-img-top" style="width: 100%; height:auto;">
+      <img src="{{ '/images/empty.jpeg'}}" alt="card-img-top" style="width: 100%; height:auto; border-radius: 10%;">
   {% endif %}
   <div class="card-body">
     <h5 class="card-title">

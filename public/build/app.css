@@ -1,6 +1,12 @@
 body {
-    background-color: lightgray;
+}
+.jumbotron.text-center{
+    background-image: url(../images/femme.jpg);
 }
 
-
+p{
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDJCQUEyQjtBQUMvQiIsImZpbGUiOiJhcHAuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmF5O1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==*/
