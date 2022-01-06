@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Data\PropertyData;
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\PropertySearch;
 
 /**
  * @method Property|null find($id, $lockMode = null, $lockVersion = null)
@@ -43,10 +45,77 @@ class PropertyRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     } 
-    private function findVisibleQuery(): QueryBuilder
+    private function findVisibleQuery()
     {
         return $this->createQueryBuilder('p')
             ->where('p.sold = false');
+    }
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(PropertySearch $search)
+    {
+        $query = $this->findVisibleQuery();
+
+        if ($search->getMaxPrice()) {
+            $query = $query
+                ->andWhere('p.price <= :maxprice')
+                ->setParameter('maxprice', $search->getMaxPrice());
+        }
+
+        if ($search->getMinSurface()) {
+            $query = $query
+                ->andWhere('p.surface >= :minsurface')
+                ->setParameter('minsurface', $search->getMinSurface());
+        }
+
+        return $query->getQuery();
+    }
+
+    private function getSearchQuery(PropertyData $search, $ignorePrice = false)
+    {
+        $query = $this
+            ->createQueryBuilder('property')
+            ->orderBy('property.created_at', 'DESC');
+
+            if(!empty($search->job)) {
+                $query = $query 
+                        ->andWhere('property.title LIKE :job')
+                        ->setParameter('job', "%{$search->job}%");
+            } 
+            
+            if(!empty($search->city)) {
+                $query = $query 
+                        ->andWhere('property.city LIKE :city')
+                        ->setParameter('city', "%{$search->city}%");
+            }
+
+            if(!empty($search->min) && $ignorePrice = false){
+                $query = $query 
+                ->andWhere('property.price >= :min')
+                ->setParameter('min', $search->min);
+            }
+            
+
+            if(!empty($search->max)){
+                $query = $query 
+                ->andWhere('property.price <= :max')
+                ->setParameter('max', $search->max);
+            }
+            return $query;
+    }
+  /**
+     * Récupère le prix min et max de la recherche
+     * @param PropertyData $search
+     * @return integer[]
+     */
+    public function findMinMax(PropertyData $search): array
+    {
+        $results = $this->getSearchQuery($search, true)
+            ->select('MIN(property.price) as min', 'MAX(property.price) as max')
+            ->getQuery()
+            ->getScalarResult();
+            return [(int)$results[0]['min'], (int)$results[0]['max']];
     }
 
     // /**

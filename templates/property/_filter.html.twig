@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+    {{ form_row(form.job) }}
+    {{ form_row(form.city) }}
+
+    <h4>Prix</h4>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.min) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.max) }}
+            </div>
+        </div>
+        <div id="salary-slider" data-min="{{ min }}" data-max="{{ max }}" style="margin-bottom: 3rem;"></div>
+        <p>
+ 
+        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+        
+{{ form_end(form) }}
