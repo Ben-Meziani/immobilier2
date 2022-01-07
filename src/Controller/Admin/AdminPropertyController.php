@@ -94,7 +94,7 @@ public function edit(Property $property, Request $request)
     ]);
 }
 /**
- *@Route("/admin/property/{id}", name="admin.property.delete", methods="DELETE")
+ *@Route("/admin/property/{id}", name="admin.property.delete")
  * @param Property $property
  * @return \Symfony\Component\HttpFoundation\RedirectResponse
  */

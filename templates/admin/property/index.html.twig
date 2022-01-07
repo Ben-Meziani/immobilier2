@@ -26,6 +26,7 @@
                 <td>{{ property.title }}</td>
                 <td>
                     <a href="{{ path('admin.property.edit', {id: property.id})}}" class="btn btn-secondary">Editer</a>
+                    <a href="{{ path('property.show', {id: property.id, slug: property.slug})}}" class="btn btn-primary">voir l'annonce</a>
                     <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}"
                         style="display: inline-block" onsubmit="return confirm('Etes-vous vraiment sûr ?')">
                         <input type="hidden" name="_method" value="DELETE">

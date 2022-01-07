@@ -26,13 +26,6 @@ class ContactNotification {
     }
 
     public function notify() {
-        // $message = (new Email('Agence : ' . $contact->getProperty()->getTitle()))
-        //     ->setFrom('noreply@agence.fr')
-        //     ->setTo('contact@agence.fr')
-        //     ->setReplyTo($contact->getEmail())
-        //     ->setBody($this->renderer->render('emails/contact.html.twig', [
-        //         'contact' => $contact
-        //     ]), 'text/html');
         $message = (new Email())
                 ->from('no-reply@interim.fr')
                 ->to('contact@agence.fr')

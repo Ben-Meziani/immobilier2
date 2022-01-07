@@ -6,6 +6,7 @@ use App\Entity\PropertySearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,16 +19,30 @@ class PropertySearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Budget maximal'
+                    'placeholder' => 'Loyer maximum'
                 ]
              ])
-            ->add('minSurface', IntegerType::class, [
+            ->add('minPrice', IntegerType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Loyer minimum'
+                ]
+             ])
+            ->add('maxSurface', IntegerType::class, [
                'required' => false,
                'label' => false,
                'attr' => [
-                   'placeholder' => 'Surface minimale'
+                   'placeholder' => 'Surface maximale'
                ]
             ])
+            ->add('minSurface', IntegerType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Surface minimale'
+                ]
+             ])
         ;
     }
 

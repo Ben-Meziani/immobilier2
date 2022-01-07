@@ -12,7 +12,7 @@ class PropertyFixture extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $property = new Property();
             $property
                 ->setTitle($faker->words(3, true))
@@ -21,10 +21,10 @@ class PropertyFixture extends Fixture
                 ->setRooms($faker->numberBetween(2,10))
                 ->setBedrooms($faker->numberBetween(1, 9))
                 ->setFloor($faker->numberBetween(0, 15))
-                ->setPrice($faker->numberBetween(100000, 1000000))
+                ->setPrice($faker->numberBetween(350, 1500))
                 ->setHeat($faker->numberBetween(0, count(Property::HEAT) - 1))
                 ->setCity($faker->city)
-                ->setAdress($faker->address)
+                ->setAddress($faker->address)
                 ->setPostalCode($faker->postcode)
                 ->setSold(false);
             $manager->persist($property);
