@@ -15,12 +15,14 @@ class AdminPictureController extends AbstractController {
     /**
      * @Route("/{id}", name="admin.picture.delete")
      */
-    public function delete(Picture $picture) {
+    public function delete(Picture $picture, Request $request) {
+        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($picture);
             $em->flush();
-            $this->addFlash('success', 'Photo supprimée avec succès');
-            return $this->redirectToRoute('admin.property.index');
-    }
+            return new JsonResponse(['success' => 1]);
+        }
 
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
 }

@@ -94,12 +94,13 @@ public function edit(Property $property, Request $request)
     ]);
 }
 /**
- *@Route("/admin/property/{id}", name="admin.property.delete")
+ *@Route("/admin/property/{id}", name="admin.property.delete", methods="DELETE")
  * @param Property $property
  * @return \Symfony\Component\HttpFoundation\RedirectResponse
  */
 public function delete(Property $property,Request $request)
 {
+    dd($request->get('_token'));
     if ($this->isCsrfTokenValid('delete'. $property->getId(), $request->get('_token'))) {
          $this->em->remove($property);
          $this->em->flush();
