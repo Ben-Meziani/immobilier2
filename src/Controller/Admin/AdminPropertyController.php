@@ -100,7 +100,6 @@ public function edit(Property $property, Request $request)
  */
 public function delete(Property $property,Request $request)
 {
-    dd($request->get('_token'));
     if ($this->isCsrfTokenValid('delete'. $property->getId(), $request->get('_token'))) {
          $this->em->remove($property);
          $this->em->flush();
