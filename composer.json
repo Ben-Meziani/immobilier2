@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
+        "easycorp/easyadmin-bundle": "^3.5",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-paginator-bundle": "^5.8",
         "laminas/laminas-zendframework-bridge": "^1.4",
