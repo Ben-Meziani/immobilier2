@@ -50,8 +50,9 @@ public function new(Request $request)
     $form = $this->createForm(PropertyType::class, $property);
     $form->handleRequest($request);
     $property->setCreatedAt(new DateTime());
-    
+
     if ($form->isSubmitted() && $form->isValid())  {
+
         $this->em->persist($property);
         $this->em->flush();
         $this->addFlash('success', 'Bien créé avec succès');
