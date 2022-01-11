@@ -37,7 +37,7 @@ public function __construct(PropertyRepository $repository, EntityManagerInterfa
  */
 public function index()
 {
-   $properties = $this->repository->findAll();
+   $properties = $this->repository->findAllVisible();
    return $this->render('admin/property/index.html.twig', compact('properties'));
 }
 
@@ -50,8 +50,9 @@ public function new(Request $request)
     $form = $this->createForm(PropertyType::class, $property);
     $form->handleRequest($request);
     $property->setCreatedAt(new DateTime());
-    
+
     if ($form->isSubmitted() && $form->isValid())  {
+
         $this->em->persist($property);
         $this->em->flush();
         $this->addFlash('success', 'Bien créé avec succès');
@@ -100,7 +101,6 @@ public function edit(Property $property, Request $request)
  */
 public function delete(Property $property,Request $request)
 {
-    dd($request->get('_token'));
     if ($this->isCsrfTokenValid('delete'. $property->getId(), $request->get('_token'))) {
          $this->em->remove($property);
          $this->em->flush();
