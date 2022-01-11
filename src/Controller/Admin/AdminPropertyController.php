@@ -37,7 +37,7 @@ public function __construct(PropertyRepository $repository, EntityManagerInterfa
  */
 public function index()
 {
-   $properties = $this->repository->findAll();
+   $properties = $this->repository->findAllVisible();
    return $this->render('admin/property/index.html.twig', compact('properties'));
 }
 

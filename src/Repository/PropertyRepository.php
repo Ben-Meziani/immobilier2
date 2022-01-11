@@ -30,6 +30,7 @@ class PropertyRepository extends ServiceEntityRepository
     public function findAllVisible()
     {
         return $this->createQueryBuilder('p')
+        ->orderBy('p.created_at', 'DESC')
         ->getQuery()
         ->getResult();
     }
@@ -49,6 +50,7 @@ class PropertyRepository extends ServiceEntityRepository
     private function findVisibleQuery()
     {
         return $this->createQueryBuilder('p')
+            ->orderBy('p.created_at', 'DESC')
             ->where('p.sold = false');
     }
     /**
@@ -58,7 +60,9 @@ class PropertyRepository extends ServiceEntityRepository
     {
         $query = $this->findVisibleQuery();
         if ($search->getMinPrice()) {
+            
             $query = $query
+                ->orderBy('property.created_at', 'DESC')
                 ->andWhere('p.price >= :minprice')
                 ->setParameter('minprice', $search->getMinPrice());
         }
