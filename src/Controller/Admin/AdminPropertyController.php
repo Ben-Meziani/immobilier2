@@ -102,6 +102,16 @@ public function edit(Property $property, Request $request)
 public function delete(Property $property,Request $request)
 {
     if ($this->isCsrfTokenValid('delete'. $property->getId(), $request->get('_token'))) {
+        $picture = $property->getPictures();
+        if($picture){
+            foreach($picture as $pict)
+            {
+                $pictureName = $this->getParameter("image_directory") . '/' . $pict->getFilename();
+                if(file_exists($pictureName)){
+                    unlink($pictureName); 
+                }
+            }
+        }
          $this->em->remove($property);
          $this->em->flush();
          $this->addFlash('success', 'Bien supprimé avec succès');

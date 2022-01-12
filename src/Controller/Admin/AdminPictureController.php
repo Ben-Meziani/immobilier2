@@ -18,6 +18,13 @@ class AdminPictureController extends AbstractController {
     public function delete(Picture $picture, Request $request) {
        $data = json_decode($request->getContent(), true);
         if ($this->isCsrfTokenValid('delete' . $picture->getId(), $data['_token'])) {
+            foreach($picture as $pict)
+            {
+                $pictureName = $this->getParameter("image_directory") . '/' .$pict->getFilename();
+                if(file_exists($pictureName)){
+                    unlink($pictureName);
+                }
+            }
             $em = $this->getDoctrine()->getManager();
             $em->remove($picture);
             $em->flush();

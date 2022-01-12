@@ -13,12 +13,6 @@
 				<div class="col" style="width: 100px; flex: none; margin: 5px;">
 					<img src="{{ vich_uploader_asset(picture, 'imageFile') | imagine_filter('thumb') }}" width="100" alt="">
 					<a href="{{ path('admin.picture.delete', {id: picture.id}) }}" class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">Supprimer</a>
-					{# <form method="post" action="{{ path('admin.picture.delete', {id: picture.id}) }}"
-					                        style="display: inline-block" onsubmit="return confirm('Etes-vous vraiment sûr ?')">
-					                        <input type="hidden" name="_method" value="DELETE">
-					                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
-					                        <button class="btn btn-danger">Supprimer</button>
-					                    </form> #}
 				</div>
 			{% endfor %}
 		</div>
