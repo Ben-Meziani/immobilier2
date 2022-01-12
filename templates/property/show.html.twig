@@ -18,31 +18,36 @@
 						{% if property.pictures is empty %}
 							<img src="{{ '/images/properties/empty.jpg'}}" alt="card-img-top" style="width: 100%; height:auto;">
 						{% else %}
-							{# {% for picture in property.pictures %}
-								<img src="{{ vich_uploader_asset(picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto;">
-							{% endfor %} #}
-							<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-									{% for picture in property.pictures %}
-										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %} aria-current="true" aria-label="Slide 1"></button>
-									{% endfor %}
+							{% if property.pictures|length > 1 %}
+								<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+									<div class="carousel-indicators">
+										{% for picture in property.pictures %}
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %} aria-current="true" aria-label="Slide 1"></button>
+										{% endfor %}
+									</div>
+									<div class="carousel-inner">
+										{% for picture in property.pictures %}
+											<div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
+												<img src="{{ vich_uploader_asset(picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto;">
+											</div>
+										{% endfor %}
+									</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
 								</div>
-								<div class="carousel-inner">
-									{% for picture in property.pictures %}
-										<div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}>
-											<img src="{{ vich_uploader_asset(picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto;">
-										</div>
-									{% endfor %}
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-							</div>
+							{% else %}
+								{% for picture in property.pictures %}
+									<img src="{{ vich_uploader_asset(picture, 'imageFile')}}" alt="card-img-top" style="width: 100%; height:auto;">
+								{% endfor %}
+							{% endif %}
+
+
 						{% endif %}
 					</div>
 				</div>
