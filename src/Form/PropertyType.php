@@ -42,7 +42,7 @@ class PropertyType extends AbstractType
             ->add('pictureFiles', FileType::class, [
                 'required' => false,
                 'multiple' => true, 
-                'label' => 'Chargement d\'images'
+                'label' => 'Chargement d\'images (jpeg uniquement)'
             ])
             ->add('city', TextType::class,[
                 'required' => true,
